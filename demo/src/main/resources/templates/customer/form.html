@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<meta charset="ISO-8859-1" />
+<title>Form Customer</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="row">
+			<div class="col-md-12">
+				<h3>Form Customer</h3>
+				<br />
+				<div class="col-md-10">
+					<!-- save alert -->
+					<div th:if="${saveCustomer eq 'unsuccess'}">
+						<div class="alert alert-danger alert-dismissible" role="alert">
+							<strong>Error !</strong> Can not save data customer.
+						</div>
+					</div>
+
+
+					<form action="#" class="form-horizontal"
+						th:action="@{/customer/form}" th:object="${customer}"
+						method="post">
+						<input type="hidden" th:field="*{id}" />
+						<div style="background-color: #FFB2B2"
+							th:if="${#fields.hasErrors('cif')}" th:errors="*{cif}">Message
+							Error</div>
+						<div style="background-color: #FFB2B2"
+							th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Message
+							Error</div>
+						<div style="background-color: #FFB2B2"
+							th:if="${#fields.hasErrors('address')}" th:errors="*{address}">Message
+							Error</div>
+						<br />
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="cif">Cif :</label>
+							<div class="col-sm-5">
+								<input id="txtCif" name="txtCif" type="text"
+									th:field="*{cif}" class="form-control"
+									placeholder="Enter CIF Customer" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="name">Name :</label>
+							<div class="col-sm-5">
+								<input id="txtName" name="txtName" type="text"
+									th:field="*{name}" class="form-control"
+									placeholder="Enter Customer Name" />
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="address">Address :</label>
+							<div class="col-sm-5">
+								<input id="txtAddress" name="txtAddress" type="text"
+									th:field="*{address}" class="form-control"
+									placeholder="Enter Customer Address" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-8">
+								<button type="submit" class="btn btn-primary">Submit</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
